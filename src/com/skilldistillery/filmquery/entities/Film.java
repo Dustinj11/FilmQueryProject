@@ -1,9 +1,10 @@
 package com.skilldistillery.filmquery.entities;
 
+import java.util.List;
 import java.util.Objects;
 
- public class Film {
-	 
+public class Film {
+
 	private int id;
 	private String title;
 	private String description;
@@ -15,13 +16,10 @@ import java.util.Objects;
 	private double replacementCost;
 	private String ratina;
 	private String specialFeatures;
+	private List<Actor> actorList;
 
-	public Film()
-	{
-		
-		
-		
-		
+	public Film() {
+
 	}
 
 	@Override
@@ -47,6 +45,14 @@ import java.util.Objects;
 			return false;
 		Film other = (Film) obj;
 		return id == other.id;
+	}
+
+	public List<Actor> getActorList() {
+		return actorList;
+	}
+
+	public void setActorList(List<Actor> actorList) {
+		this.actorList = actorList;
 	}
 
 	public int getId() {
@@ -136,5 +142,4 @@ import java.util.Objects;
 	public void setSpecialFeatures(String specialFeatures) {
 		this.specialFeatures = specialFeatures;
 	}
-}	
-
+}

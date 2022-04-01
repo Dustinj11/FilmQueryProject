@@ -1,9 +1,11 @@
 package com.skilldistillery.filmquery.app;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
+import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
@@ -19,6 +21,12 @@ public class FilmQueryApp {
   private void test() {
     Film film = db.findFilmById(1);
     System.out.println(film);
+//    Actor actor = db.findActorById(1);
+//    System.out.println(actor);
+//    System.out.println(film.getActorList());
+    for( Actor a : film.getActorList()) {
+		System.out.println(a);
+	}
   }
 
   private void launch() {
@@ -30,7 +38,7 @@ public class FilmQueryApp {
   }
 
   private void startUserInterface(Scanner input) {
-    
+    // Start menu loop, input, etc...
   }
 
 }

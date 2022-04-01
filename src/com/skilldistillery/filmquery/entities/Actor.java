@@ -6,24 +6,27 @@ public class Actor {
 	
 
 
-	private Integer id;
+	private int id;
 	private String firstName;
 	private String lastName;	
 	
+	public Actor() {
+		
+	}
 	
-	public Actor(Integer id, String firstName, String lastName) {
-		super();
+	public Actor(int id, String firstName, String lastName) {
+		
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
 	
-	public Integer getId() {
+	public int getId() {
 		return id;
 	}
 
 
-	public void setId(Integer id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
