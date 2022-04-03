@@ -43,7 +43,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 				film.setRentalRate(rs.getInt("rental_rate"));
 				film.setLength(rs.getInt("length"));
 				film.setReplacementCost(rs.getDouble("replacement_cost"));
-				film.setRatina(rs.getString("rating"));
+				film.setRating(rs.getString("rating"));
 				film.setSpecialFeatures(rs.getString("special_features"));
 				film.setActorList(findActorsByFilmId(filmId));
 			}
@@ -114,7 +114,65 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 		return actors;
 	}
+	@Override
+	public List<Film> findFilmByKeyword(String keyword) {
+		List<Film> films = new ArrayList<>();
+//		keyword = "%" + keyword + "%";
+		String sql = "SELECT* from film WHERE title LIKE ? OR description LIKE ?";
+		try (Connection conn = DriverManager.getConnection(URL, user, pass);
+				PreparedStatement ps = conn.prepareStatement(sql);) {
+			ps.setString(1, "%" + keyword + "%");
+			ps.setString(2, "%" + keyword + "%");
+			ResultSet rs = ps.executeQuery();
+				while (rs.next()) {
+					Film film = new Film();
+					film.setId(rs.getInt("id"));
+					film.setTitle(rs.getString("title"));
+					film.setDescription(rs.getString("description"));
+					film.setReleaseYear(rs.getInt("release_year"));
+					film.setLanguageId(rs.getInt("language_id"));
+					film.setRentalDuration(rs.getInt("rental_duration"));
+					film.setRentalRate(rs.getInt("rental_rate"));
+					film.setLength(rs.getInt("length"));
+					film.setReplacementCost(rs.getDouble("replacement_cost"));
+					film.setRating(rs.getString("rating"));
+					film.setSpecialFeatures(rs.getString("special_features"));
+					films.add(film);
+				}
+			
+				rs.close();
+				ps.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 
+			return films;
+		}
+
+	@Override
+	public String findFilmLanguage(int languageId) {
+		String language = null;
+		String sql = "SELECT name FROM language WHERE id = ?";
+		try (Connection conn = DriverManager.getConnection(URL, user, pass);
+				PreparedStatement ps = conn.prepareStatement(sql);) {
+			ps.setInt(1, languageId);
+			ResultSet rs = ps.executeQuery();
+				if (rs.next()) {
+					language = rs.getString(1);
+				}
+				rs.close();
+				ps.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			return language;
+		}
+
+	
+	
 	static {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

@@ -21,6 +21,10 @@ public class Actor {
 		this.lastName = lastName;
 	}
 	
+	public String displayString() {
+		return firstName+" "+lastName;
+	}
+	
 	public int getId() {
 		return id;
 	}

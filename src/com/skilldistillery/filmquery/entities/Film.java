@@ -14,19 +14,25 @@ public class Film {
 	private double rentalRate;
 	private Integer length;
 	private double replacementCost;
-	private String ratina;
+	private String rating;
 	private String specialFeatures;
 	private List<Actor> actorList;
 
 	public Film() {
 
 	}
+	
+	public String displayString() {
+		String display = "\nFilm Id: "+id+"\nTitle: "+title+", Release Year: "+releaseYear+", Rating: "+rating+"\nDescription: "+description;
+		return display;
+		}
+	
 
 	@Override
 	public String toString() {
 		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
 				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
-				+ ", length=" + length + ", replacementCost=" + replacementCost + ", ratina=" + ratina
+				+ ", length=" + length + ", replacementCost=" + replacementCost + ", ratina=" + rating
 				+ ", specialFeatures=" + specialFeatures + "]";
 	}
 
@@ -127,12 +133,12 @@ public class Film {
 		this.replacementCost = replacementCost;
 	}
 
-	public String getRatina() {
-		return ratina;
+	public String getRating() {
+		return rating;
 	}
 
-	public void setRatina(String ratina) {
-		this.ratina = ratina;
+	public void setRating(String ratina) {
+		this.rating = ratina;
 	}
 
 	public String getSpecialFeatures() {
